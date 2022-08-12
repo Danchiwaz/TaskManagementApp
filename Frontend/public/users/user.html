@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Frontend/public/users/users.css" />
+    <title>Welcome,..</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <div class="side-Nav">
+          <div class="user__desc">
+            <ion-icon size="large" name="person-circle-outline"></ion-icon>
+            <h6 id="user_name"></h6>
+          </div>
+          <div class="user__nav">
+            <div class="user__btns">
+              <button id="assignedBtn">Assigned Project</button>
+              <button id="finishedProject">Completed Projects</button>
+            </div>
+            <div class="log-out">
+              <button id="logoutBtn">Logout</button>
+            </div>
+          </div>
+        </div>
+        <div class="main-content"></div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="/Frontend/dist/singleUser.js"></script>
+  </body>
+</html>

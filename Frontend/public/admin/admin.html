@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Frontend/public/users/users.css" />
+    <title>Admin Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <div class="side-Nav">
+          <div class="user__desc">
+            <ion-icon size="large" name="person-circle-outline"></ion-icon>
+            <h6 id="user_name"></h6>
+          </div>
+          <div class="user__nav">
+            <div class="admin__btns">
+              <button id="addBtn">Add Project</button>
+              <button id="sentProjects">Assigned Projects</button>
+              <button id="submitedProjects">Compeleted Projects</button>
+            </div>
+            <div class="log-out">
+              <button id="logoutBtn">Logout</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-content">
+          <div class="main-content__headers">
+            <div class="cards main-content__projects">
+              <h5 class="desc">Total Projects</h5>
+              <div class="main-content__desc">
+                <p>12</p>
+              </div>
+            </div>
+
+            <div class="cards main-content__assigned">
+              <h5 class="desc">Assigned Projects</h5>
+              <div class="main-content__desc">
+                <p>12</p>
+              </div>
+            </div>
+
+            <div class="cards main-content__unassigned">
+              <h5 class="desc">Unassigned Projects</h5>
+              <div class="main-content__desc">
+                <p>12</p>
+              </div>
+            </div>
+
+            <div class="cards main-content__completed">
+              <h5 class="desc">completed Projects</h5>
+              <div class="main-content__desc">
+                <p>12</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="right__content">
+            <div id="formProject">
+              <h6 id="projectInfo"></h6>
+              <form id="projectForm" action="">
+                <div class="form-group">
+                  <label for="">Title</label>
+                  <input type="text" id="title" />
+                </div>
+                <div class="form-group">
+                  <label for="">Description</label>
+                  <textarea
+                    name=""
+                    id="description"
+                    cols="30"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="">Due Date</label>
+                  <input type="Date" id="dueDate" />
+                </div>
+                <div class="form-group">
+                  <label for="">Assign</label>
+                  <select name="" id="listuser"></select>
+                </div>
+                <div class="form-group">
+                  <input
+                    id="projectSubmitBtn"
+                    type="submit"
+                    value="Add Project"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+     <script type="module" src="/Frontend/dist/admin.js"></script>
+    <script src="/Frontend/dist/singleUser.js"></script>
+   
+  </body>
+</html>

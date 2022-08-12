@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.container {
+  background: #cce7c2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main {
+  background-color: #f4f5f9;
+  height: 90vh;
+  width: 90vw;
+  border-radius: 10px;
+}
+.header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+.header__left {
+  flex: 1;
+}
+.header-right {
+  /* flex: ; */
+  display: flex;
+  gap: 3rem;
+  flex: 2;
+  justify-content: space-around;
+}
+.logo {
+  width: 100px;
+  height: 100px;
+}
+.log-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.navs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  color: #575961;
+}
+.login__btns button {
+  transition: background-color 1s;
+  font-size: 14px;
+}
+.login__btns button:nth-child(1) {
+  border: 2px solid #cce7c2;
+  background-color: whitesmoke;
+  color: black;
+  padding: 0.7rem 2rem;
+  border-radius: 60px;
+}
+.login__btns button:nth-child(2) {
+  border: 3px solid #cce7c2;
+  background-color: whitesmoke;
+  color: black;
+  padding: 0.7rem 2rem;
+  border-radius: 60px;
+}
+.login__btns button:hover {
+  background-color: #cce7c2;
+  color: white;
+}
+.hero_-section-left {
+  height: 100%;
+  flex: 1;
+}
+.hero-img {
+  width: 600px;
+  /* height: 70%; */
+  object-fit: contain;
+  /* width: 500px; */
+}
+/* hero section  */
+.hero__section {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-around;
+}
+#hero__section-right {
+  flex: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space space-around;
+}
+#error{
+  color: red;
+}
+#error_login{
+  color: red;
+  background-color: #cce7c2;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  width: 300px;
+  margin-bottom: 0.5rem;
+}
+#hero__section {
+  word-spacing: 0.5rem;
+  color: #3f3d56;
+  font-size: 16px;
+  font-weight: 900;
+  padding-right: 1rem;
+  padding-top: 3rem;
+  
+}
+.hero_btn {
+  width: 25rem;
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  color: black;
+  margin-top: 3rem;
+  /* font-weight: 900; */
+  font-size: 14px;
+  /* background-color: #cce7c2; */
+  border: 2px solid #cce7c2;
+  transition: background-color 2s;
+}
+.hero_btn:hover{
+  background-color: #cce7c2;
+  color: black;
+}
+/* end of the hero section  */
+
+/* sign up form  */
+#signup-form {
+  flex: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  justify-content: center;
+  /* background-color: red; */
+  margin-right: 10rem;
+}
+#toggle_sign_form{
+    display: none;
+}
+#form-for-signup {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1rem; */
+  width: 100%;
+  align-items: flex-start;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group input {
+  width: 23rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #cce7c2;
+  border-radius: 60px;
+  background-color: transparent;
+  outline-color: #cce7c2;
+}
+.form-group label {
+  color: #575961;
+  padding-bottom: 1rem;
+}
+.form-group button {
+  border: 3px solid #cce7c2;
+  background-color: whitesmoke;
+  width: 10rem;
+  color: black;
+  padding: 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+  border-radius: 60px;
+  font-weight: 900;
+  transition: background-color 1s;
+}
+.hero__section-desc{
+  color: #999a9e;
+  text-align: center;
+}
+.form-group button:hover {
+  font-weight: 900;
+  background-color: #cce7c2;
+  width: 15rem;
+  color: white;
+  
+}
+#login-form{
+    display: none;
+    /* background-color: red; */
+    margin-right: 10rem;
+}
+#loginBtn{
+    margin-top: 3rem;
+}
+/* en dof the sign form  */

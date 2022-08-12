@@ -1,0 +1,10 @@
+.env
+Backend/dist
+Backend/node_modules
+Backend/.env
+
+Frontend/node_modules
+Frontend/dist
+Backgroundservice/node_modules
+Backgroundservice/.env
+node_modules
