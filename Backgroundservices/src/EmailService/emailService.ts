@@ -48,3 +48,43 @@ const SendEmails = async () => {
 };
 
 export default SendEmails;
+
+
+export const sendProjectEmail = async () => {
+  let projects =
+    await pool.query(`SELECT project.title, project.due_at, users.email, users.username
+FROM project
+INNER JOIN users
+ON project.assigned_to = users.user_id WHERE users.assigned_project='yes';`);
+  projects = projects.rows;
+
+  for (let project of projects) {
+    ejs.renderFile(
+      __dirname + "/../../templates/projectAssigned.ejs",
+      { username: project.username, title: project.title, due: project.due_at},
+      async (error, data) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        let messageoption = {
+          from: process.env.EMAIL_SENDER,
+          to: project.email,
+          subject: "Registration Successfull",
+          html: data,
+        };
+
+        try {
+          await sendMail(messageoption);
+          await pool.query(
+            `UPDATE users SET assigned_project='working' WHERE email = '${project.email}'`
+          );
+          console.log("Email is Sent");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  }
+};
+

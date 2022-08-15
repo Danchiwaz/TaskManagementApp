@@ -1,4 +1,4 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, RequestHandler, response, Response } from "express";
 import pool from "../database/config.js";
 import bcrypt from "bcrypt";
 import { jwtTokens } from "../Helpers/jwt-helper.js";
@@ -81,3 +81,20 @@ export const checkUser = async (req: Extended, res: Response) => {
     });
   }
 };
+
+export const getProject = async (req: Request, res: Response) =>{
+ try {
+   const userId = req.params.userId;
+   let project = await pool.query(
+     `SELECT * FROM project WHERE assigned_to='${userId}'`
+   );
+   project = project.rows[0]
+   res.json({
+    project
+   })
+ } catch (error) {
+  res.json({
+    error:error
+  })
+ }
+}

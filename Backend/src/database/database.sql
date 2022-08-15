@@ -25,3 +25,10 @@ CREATE TABLE IF NOT EXISTS projects
     completed VARCHCHAR(255) DEFAULT 'no',
     assigned_to uuid REFERENCES user(user_id)
 )
+
+
+
+SELECT *
+FROM project
+INNER JOIN users
+ON project.assigned_to = users.user_id;

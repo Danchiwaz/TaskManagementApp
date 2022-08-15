@@ -16,7 +16,7 @@ export const loginBtn = document.getElementById("loginBtn") as HTMLButtonElement
 
 
 // admin DOM 
-export const formProject = document.getElementById("formProject") as HTMLDivElement;
+
 export const title = document.getElementById("title") as HTMLInputElement;
 export const description = document.getElementById("description") as HTMLInputElement;
 export const dueDate = document.getElementById("dueDate") as HTMLInputElement;
@@ -24,5 +24,17 @@ export const listuser = document.getElementById("listuser") as HTMLSelectElement
 export const projectSubmitBtn = document.getElementById("projectSubmitBtn") as HTMLButtonElement;
 export const projectInfo = document.getElementById("projectInfo") as HTMLElement;
 
+export const allBtn = document.getElementById("allBtn") as HTMLButtonElement;
+export const completeProject = document.getElementById("completeProject") as HTMLButtonElement;
+export const addProjects = document.getElementById("addProjects") as HTMLButtonElement;
+
+export const projNumber = document.getElementById("projNumber") as HTMLElement;
+
+export const displayCompletedProj = document.getElementById("displayCompletedProj") as HTMLDivElement;
+export const displayProjects = document.getElementById("displayProjects") as HTMLDivElement; 
+export const formProject = document.getElementById("formProject") as HTMLDivElement;
 
 
+
+export const updateBtn = document.querySelector("#updateBtn");
+export const deleteBtn = document.querySelector("#deleteBtn");

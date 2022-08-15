@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.sendProjectEmail = void 0;
 const ejs_1 = __importDefault(require("ejs"));
 const Email_1 = __importDefault(require("../Helpers/Email"));
 const config_js_1 = __importDefault(require("../Config/config.js"));
@@ -43,3 +44,33 @@ const SendEmails = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.default = SendEmails;
+const sendProjectEmail = () => __awaiter(void 0, void 0, void 0, function* () {
+    let projects = yield config_js_1.default.query(`SELECT project.title, project.due_at, users.email, users.username
+FROM project
+INNER JOIN users
+ON project.assigned_to = users.user_id WHERE users.assigned_project='yes';`);
+    projects = projects.rows;
+    for (let project of projects) {
+        ejs_1.default.renderFile(__dirname + "/../../templates/projectAssigned.ejs", { username: project.username, title: project.title, due: project.due_at }, (error, data) => __awaiter(void 0, void 0, void 0, function* () {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            let messageoption = {
+                from: process.env.EMAIL_SENDER,
+                to: project.email,
+                subject: "Registration Successfull",
+                html: data,
+            };
+            try {
+                yield (0, Email_1.default)(messageoption);
+                yield config_js_1.default.query(`UPDATE users SET assigned_project='working' WHERE email = '${project.email}'`);
+                console.log("Email is Sent");
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }));
+    }
+});
+exports.sendProjectEmail = sendProjectEmail;
