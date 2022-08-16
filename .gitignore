@@ -6,5 +6,6 @@ Backend/.env
 Frontend/node_modules
 Frontend/dist
 Backgroundservice/node_modules
+Backgroundservice/dist
 Backgroundservice/.env
 node_modules
