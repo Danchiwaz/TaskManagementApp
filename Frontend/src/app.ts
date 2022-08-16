@@ -77,12 +77,13 @@ class User {
         })
         .catch((err) => {
           reject(err);
+          
         });
     });
 
-    prom
-      .then((data) => {
-        data.token ? localStorage.setItem("token", data.token) : "";
+    prom.then((data) => {
+        data.token
+          ? localStorage.setItem("token", data.token): (login_error.innerHTML =`<p id='error_login'>${data.message}</p>`);
       })
       .catch((err) => {
         login_error.innerHTML = `<p id="error_login">Username and password required</p>`;
@@ -114,6 +115,7 @@ class User {
       if (data.role === "admin") {
           if (data.role !== "admin"){
             location.href = "/Frontend/public/errorPage/error.html";
+            
           }
             location.href = "/Frontend/public/admin/admin.html";
       } else if (data.role === "user") {

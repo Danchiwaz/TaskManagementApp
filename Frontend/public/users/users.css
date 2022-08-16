@@ -232,6 +232,9 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
 }
+.project_container:hover{
+box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
 .project_headerDetails {
   display: flex;
   justify-content: space-between;
@@ -304,5 +307,29 @@
 }
 .complete{
   color: #92cb7b;
+}
+#completeUpdate{
+  background-color: #cce7c2;
+  margin:300px auto;
+  width: 400px;
+  text-align: center;
+  
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 60px;
+}
+.no_task {
+  color: green;
+  text-align: center;
+  margin-top: 20%;
+}
+#project_update{
+  color: green;
+  font-size: 14px;
+}
+#projectInfo{
+  color: green;
+  font-size: 14px;
+  text-align: center;
 }
 /* end of admin page  */

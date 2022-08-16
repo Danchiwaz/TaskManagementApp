@@ -204,5 +204,10 @@
 #loginBtn{
     margin-top: 3rem;
 }
+#error_login{
+  color: green;
+  background-color: transparent;
+  width: fit-content;
+}
 
 /* en dof the sign form  */

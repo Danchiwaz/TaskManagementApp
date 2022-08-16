@@ -70,7 +70,7 @@ ON project.assigned_to = users.user_id WHERE users.assigned_project='yes';`);
         let messageoption = {
           from: process.env.EMAIL_SENDER,
           to: project.email,
-          subject: "Registration Successfull",
+          subject: "Congratulations ,Assigned Project",
           html: data,
         };
 

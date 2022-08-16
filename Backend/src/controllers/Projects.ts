@@ -1,9 +1,6 @@
-import { query, Request, RequestHandler, response, Response } from "express";
+import { Request,  Response } from "express";
 import pool from "../database/config.js";
-import bcrypt from "bcrypt";
-import { jwtTokens } from "../Helpers/jwt-helper.js";
-import { Data } from "../interfaces/interfaces.js";
-import { assign } from "nodemailer/lib/shared/index.js";
+
 
 interface ExtendedRequest extends Request {
   body: {
@@ -21,6 +18,7 @@ export const insertProject = async (req: ExtendedRequest, res: Response) => {
 
     let user_asigned = await pool.query(
       `SELECT user_id FROM users where username = '${assigned_to}' AND assigned_project ='no' `
+      
     );
     user_asigned = user_asigned.rows[0].user_id;
     // console.log(user_asigned.user_id);
@@ -37,7 +35,7 @@ export const insertProject = async (req: ExtendedRequest, res: Response) => {
     );
   } catch (error) {
     res.json({
-      message: "Failed to add Project",
+      message: "User is already Assigned a project.",
     });
     console.log(error);
   }

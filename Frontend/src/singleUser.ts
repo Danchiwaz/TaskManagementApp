@@ -58,11 +58,8 @@ class user {
       await fetch(`http://127.0.0.1:5003/users/project/${userId}`)
         .then((res) => res.json())
         .then((data) => {
-          if (!data) {
-            const completeUpdate = document.querySelector(
-              "#completeUpdate"
-            ) as HTMLElement;
-            completeUpdate.innerText = "You are yet to be assigned a project";
+          if (!data.project) {
+            displayUserProject.innerHTML ="<h5 id='completeUpdate'>No Project Assigned.</h5>"
           }
           displayUserProject.innerHTML = ` <div class="project_container">
               <div class="project_headerDetails">

@@ -61,7 +61,7 @@ export const LoginUser = async (req: ExtendedRequest, res: Response) => {
       token,
     });
   } catch (error) {
-    res.status(401).json({
+    res.json({
       message: "Invalid credentials",
     });
   }

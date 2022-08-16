@@ -32,6 +32,7 @@ class Admin {
       .then((data) => {
         const ManyUser = data.users;
         for (const user of ManyUser) {
+          
           const child = document.createElement("option");
           child.value = user.username;
           child.innerText = user.username;
@@ -100,7 +101,7 @@ class Admin {
       .then((data) => {
         
         displayProjects.innerHTML = !TaskRendering(data)
-          ? "<h5>No Tasks available</h5>"
+          ? "<p class='no_task'>No Tasks available</p>"
           : TaskRendering(data);
 
         projNumber.innerText = data.length;
