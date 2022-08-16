@@ -88,3 +88,38 @@ ON project.assigned_to = users.user_id WHERE users.assigned_project='yes';`);
   }
 };
 
+export const CompleteProjectEmail = async () => {
+  let projects = await pool.query("SELECT project.title, project.due_at, users.email, users.username,users.iscomplete FROM project INNER JOIN users ON project.assigned_to = users.user_id WHERE users.iscomplete='no'");
+  projects = projects.rows;
+
+
+  for (let project of projects) {
+    ejs.renderFile(
+      __dirname + "/../../templates/completeProject.ejs",
+      { username: project.username, title: project.title, due: project.due_at },
+      async (error, data) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        let messageoption = {
+          from: project.email,
+          to: process.env.EMAIL_SENDER,
+          subject: "Project Complete",
+          html: data,
+        };
+
+        try {
+          await sendMail(messageoption);
+          await pool.query(
+            `UPDATE users SET iscomplete='sent' WHERE email = '${project.email}'`
+          );
+          console.log("Email is Sent");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  }
+};
+

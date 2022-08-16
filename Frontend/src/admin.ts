@@ -81,7 +81,7 @@ class Admin {
     
   };
 
-  public populateForm = async (id:any){
+  public populateForm = async (id:any) =>{
     await fetch(`http://127.0.0.1:5003/projects/singleproject/${id}`)
     .then(response => response.json())
     .then(data =>{
@@ -94,34 +94,11 @@ class Admin {
     .catch(err => console.log(err))
   }
 
-  // public updateTask = async (id:any) => {
-  //    const res = await fetch("http://127.0.0.1:5003/projects", {
-  //      headers: {
-  //        Accept: "application/json",
-  //        "Content-Type": "application/json",
-  //      },
-  //      method: "POST",
-  //      body: JSON.stringify({
-  //        title: title,
-  //        description: description,
-  //        due_at: due_at,
-  //        assigned_to: assigned_to,
-  //      }),
-  //    });
-  //    const jsonResponse = await res.json();
-  //    projectInfo.innerText = jsonResponse.message;
-  //    setTimeout(() => {
-  //      formProject.style.display = "none";
-  //      displayCompletedProj.style.display = "none";
-  //      displayProjects.style.display = "block";
-  //      location.reload();
-  //    }, 1000);
-  // }
-
   public listProjects = async () => {
     await fetch("http://127.0.0.1:5003/projects")
       .then((res) => res.json())
       .then((data) => {
+        
         displayProjects.innerHTML = !TaskRendering(data)
           ? "<h5>No Tasks available</h5>"
           : TaskRendering(data);
@@ -130,7 +107,7 @@ class Admin {
         const deleteBtn = document.querySelectorAll("#deleteBtn");
         const updateBtn = document.querySelectorAll("#updateBtn");
         
-        
+        // delete buttons 
         for (const deleteB of deleteBtn) {
           deleteB.addEventListener("click", (e) => {
             if (e.target) {
@@ -148,6 +125,7 @@ class Admin {
             }
           });
         }
+        // end of the delete buttons 
        
         // update btn  
         for (const updateB of updateBtn) {

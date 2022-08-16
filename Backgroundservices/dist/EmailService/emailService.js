@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendProjectEmail = void 0;
+exports.CompleteProjectEmail = exports.sendProjectEmail = void 0;
 const ejs_1 = __importDefault(require("ejs"));
 const Email_1 = __importDefault(require("../Helpers/Email"));
 const config_js_1 = __importDefault(require("../Config/config.js"));
@@ -74,3 +74,30 @@ ON project.assigned_to = users.user_id WHERE users.assigned_project='yes';`);
     }
 });
 exports.sendProjectEmail = sendProjectEmail;
+const CompleteProjectEmail = () => __awaiter(void 0, void 0, void 0, function* () {
+    let projects = yield config_js_1.default.query("SELECT project.title, project.due_at, users.email, users.username,users.iscomplete FROM project INNER JOIN users ON project.assigned_to = users.user_id WHERE users.iscomplete='no'");
+    projects = projects.rows;
+    for (let project of projects) {
+        ejs_1.default.renderFile(__dirname + "/../../templates/completeProject.ejs", { username: project.username, title: project.title, due: project.due_at }, (error, data) => __awaiter(void 0, void 0, void 0, function* () {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            let messageoption = {
+                from: project.email,
+                to: process.env.EMAIL_SENDER,
+                subject: "Project Complete",
+                html: data,
+            };
+            try {
+                yield (0, Email_1.default)(messageoption);
+                yield config_js_1.default.query(`UPDATE users SET iscomplete='sent' WHERE email = '${project.email}'`);
+                console.log("Email is Sent");
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }));
+    }
+});
+exports.CompleteProjectEmail = CompleteProjectEmail;

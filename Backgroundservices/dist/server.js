@@ -44,6 +44,7 @@ const run = () => {
         console.log("running a 5 seconds");
         yield (0, emailService_1.default)();
         yield (0, emailService_1.sendProjectEmail)();
+        yield (0, emailService_1.CompleteProjectEmail)();
     }));
 };
 run();

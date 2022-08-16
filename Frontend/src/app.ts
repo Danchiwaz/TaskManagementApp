@@ -112,9 +112,15 @@ class User {
       console.log(data);
       localStorage.setItem("data", JSON.stringify(data));
       if (data.role === "admin") {
-        location.href = "/Frontend/public/admin/admin.html";
+          if (data.role !== "admin"){
+            location.href = "/Frontend/public/errorPage/error.html";
+          }
+            location.href = "/Frontend/public/admin/admin.html";
       } else if (data.role === "user") {
-        location.href = "/Frontend/public/users/user.html";
+        if (data.role !== "user"){
+          location.href = "/Frontend/public/errorPage/error.html";
+        }
+          location.href = "/Frontend/public/users/user.html";
       }
     });
   }

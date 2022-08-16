@@ -34,3 +34,15 @@ language plpgsql;
 -- end of procedure to check if user is assigned a project 
 
 
+
+
+create or replace procedure InsertProject(tit character varying(255) NOT NULL , descr character varying(255) NOT NULL, due date NOT NULL, assig uuid)
+as
+$$
+  begin 
+     INSERT INTO project(title, description, due_at, assigned_to) VALUES (tit, descr,due, assig );
+	 
+  end;
+$$
+language plpgsql;
+  

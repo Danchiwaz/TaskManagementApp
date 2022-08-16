@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS projects
     title VARCHAR(255) NOT NULL,
     description VARCHAR(1000) NOT NULL ,
     due_at DATE NOT NULL,
-    completed VARCHCHAR(255) DEFAULT 'no',
+    completed VARCHAR(255) DEFAULT 'no',
     assigned_to uuid REFERENCES user(user_id)
 )
 

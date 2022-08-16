@@ -1,6 +1,6 @@
 import express from "express";
 import cron from "node-cron";
-import SendEmails, { sendProjectEmail } from "./EmailService/emailService";
+import SendEmails, {CompleteProjectEmail, sendProjectEmail } from "./EmailService/emailService";
 
 
 const app = express();
@@ -10,6 +10,7 @@ const run = () => {
     console.log("running a 5 seconds");
     await SendEmails();
     await sendProjectEmail()
+    await CompleteProjectEmail()
   });
 };
 run();

@@ -20,7 +20,7 @@ export const insertProject = async (req: ExtendedRequest, res: Response) => {
     console.log(req.body);
 
     let user_asigned = await pool.query(
-      `SELECT user_id FROM users where username = '${assigned_to}'`
+      `SELECT user_id FROM users where username = '${assigned_to}' AND assigned_project ='no' `
     );
     user_asigned = user_asigned.rows[0].user_id;
     // console.log(user_asigned.user_id);
@@ -50,9 +50,7 @@ export const getProjects = async (req: ExtendedRequest, res: Response) => {
     );
 
     projects = projects.rows;
-    res.json(
-      projects
-    );
+    res.json(projects);
   } catch (error) {
     res.status(500).json({
       error: error,
@@ -60,29 +58,29 @@ export const getProjects = async (req: ExtendedRequest, res: Response) => {
   }
 };
 
-export const getSingleProject = async (req:ExtendedRequest,res:Response) =>{
+export const getSingleProject = async (req: ExtendedRequest, res: Response) => {
   try {
     const proj_id = req.params.id;
-    let singleProject = await pool.query(`SELECT * FROM project WHERE project_id = '${proj_id}'`);
+    let singleProject = await pool.query(
+      `SELECT * FROM project WHERE project_id = '${proj_id}'`
+    );
     singleProject = singleProject.rows[0];
     res.json({
-      singleProject
-    })
+      singleProject,
+    });
   } catch (error) {
     console.log(error);
-    
   }
-}
+};
 
-export const updateProject = async (req:ExtendedRequest,res:Response) => {
+export const updateProject = async (req: ExtendedRequest, res: Response) => {
   try {
-
     const updateId = req.params.id;
     const { title, description, due_at, assigned_to } = req.body;
-      let user_updated = await pool.query(
-        `SELECT user_id FROM users where username = '${assigned_to}'`
-      );
-      user_updated = user_updated.rows[0].user_id;
+    let user_updated = await pool.query(
+      `SELECT user_id FROM users where username = '${assigned_to}'`
+    );
+    user_updated = user_updated.rows[0].user_id;
     const newupdate = await pool.query(
       `UPDATE project SET title ='${title}' ,description ='${description}', due_at ='${due_at}', assigned_to ='${user_updated}' WHERE project_id='${updateId}' `
     );
@@ -90,36 +88,54 @@ export const updateProject = async (req:ExtendedRequest,res:Response) => {
     res.json({
       message: "You have updated project Successfully",
     });
-    
-    
   } catch (error) {
-     console.log(error);
-     
+    console.log(error);
   }
-}
-
-
-export const deleteProject = async (req:ExtendedRequest, res:Response) => {
-  try {
-    const id = req.params.id;
-    console.log(id);
-    
-    let user_id = await pool.query(`SELECT * FROM project WHERE project_id='${id}'`)
-    user_id = user_id.rows[0].assigned_to;
-    console.log(user_id);
-    
-     await pool.query(`UPDATE users SET assigned_project='no' WHERE user_id='${user_id}'`);
-    await pool.query(`DELETE FROM project WHERE project_id='${id}'`)
-    res.json({
-      message:"Project Deleted Successfully"
-    })
-   
-  } catch (error) {
-   console.log(error);
-   ;
-  }
-  
 };
 
+export const deleteProject = async (req: ExtendedRequest, res: Response) => {
+  try {
+    const id = req.params.id;
+    // console.log(id);
 
+    let user_id = await pool.query(
+      `SELECT * FROM project WHERE project_id='${id}'`
+    );
+    user_id = user_id.rows[0].assigned_to;
+    console.log(user_id);
 
+    await pool.query(
+      `UPDATE users SET assigned_project='no' WHERE user_id='${user_id}'`
+    );
+    await pool.query(`DELETE FROM project WHERE project_id='${id}'`);
+    res.json({
+      message: "Project Deleted Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const markAsComplete = async (req: ExtendedRequest, res: Response) => {
+  try {
+    const id = req.params.id;
+
+    let user_id = await pool.query(
+      `SELECT * FROM project WHERE project_id='${id}'`
+    );
+    user_id = user_id.rows[0].assigned_to;
+    await pool.query(
+      `UPDATE project SET completed = 'true' WHERE assigned_to = '${user_id}'`
+    );
+    await pool.query(
+      `UPDATE users SET assigned_project='no' WHERE user_id='${user_id}'`
+    );
+    res.json({
+      message: "Project completed successfully",
+    });
+  } catch (error) {
+    res.json({
+      error,
+    });
+  }
+};

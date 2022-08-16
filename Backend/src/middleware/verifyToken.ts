@@ -21,9 +21,7 @@ export const VerifyToken = (
     }
 
     const data = jwt.verify(
-      token,
-      process.env.USER_ACCESS_TOKEN as string
-    ) as Data;
+      token,process.env.USER_ACCESS_TOKEN as string ) as Data;
     req.info = data;
   } catch (error) {
     return res.json({ error });
