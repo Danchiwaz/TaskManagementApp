@@ -4,7 +4,7 @@
  
  #### Home page
  ![](https://github.com/Danchiwaz/TaskManagementApp/blob/main/screenshots/home.png "Home Page ")
-  ######SignUp page
+  #### SignUp page
  ![](https://github.com/Danchiwaz/TaskManagementApp/blob/main/screenshots/sign.png "SignUp Page ")
 
   #### Login page
